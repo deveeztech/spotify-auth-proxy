@@ -32,7 +32,7 @@ var (
 type EnvConfig struct {
 	ClientID     string   `env:"SPOTIFY_CLIENT_ID,required"`
 	ClientSecret string   `env:"SPOTIFY_CLIENT_SECRET,required"`
-	BaseURL      *url.URL `env:"SPOTIFY_PROXY_BASE_URI" envDefault:"http://localhost:27228"`
+	BaseURL      *url.URL `env:"SPOTIFY_PROXY_BASE_URI" envDefault:"http://localhost:8080"`
 	APIKey       string   `env:"SPOTIFY_PROXY_API_KEY"`
 }
 
@@ -82,7 +82,7 @@ func main() {
 	http.HandleFunc("/spotify_callback", SpotifyCallback)
 	http.HandleFunc("/health", HealthCheck)
 
-	log.Fatal(http.ListenAndServe(":27228", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
 // APIToken is the endpoint for refreshing API tokens
